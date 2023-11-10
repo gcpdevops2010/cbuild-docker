@@ -4,6 +4,7 @@ ARG TWIST_URL
 ARG TWIST_USERNAME
 ARG TWIST_PASSWORD
 ARG CHECKMARX_VERSION=2.0.60
+ARG GCLOUD_CLI_VERSION=454.0.0
 ARG SONAR_SCANNER_VERSION=5.0.1.3006
 ARG SONAR_SCANNER_HOME=/opt/sonar-scanner
 ARG use_embedded_jre=false
@@ -32,8 +33,16 @@ RUN curl -L -k -o sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux.zip https://b
     && mv /opt/sonar-scanner-${SONAR_SCANNER_VERSION}-linux ${SONAR_SCANNER_HOME} \
     && chmod +x ${SONAR_SCANNER_HOME}/bin/sonar-scanner
 
+# Download and install the Google Cloud CLI
+RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-${GCLOUD_CLI_VERSION}-linux-x86_64.tar.gz && \
+    tar xzf google-cloud-cli-${GCLOUD_CLI_VERSION}-linux-x86_64.tar.gz && \
+    ./google-cloud-sdk/install.sh
+
+# Remove the downloaded tar file
+RUN rm google-cloud-cli-${GCLOUD_CLI_VERSION}-linux-x86_64.tar.gz
+
 # Add SonarScanner to the PATH
-ENV PATH="${SONAR_SCANNER_HOME}/bin:${PATH}"
+ENV PATH="${SONAR_SCANNER_HOME}/bin:/google-cloud-sdk/bin:${PATH}"
 
 # Create a directory for the script
 WORKDIR /usr/app
