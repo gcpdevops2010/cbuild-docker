@@ -8,7 +8,7 @@ fi
 
 # Extract the command and shift the arguments to pass the rest to the respective tool
 COMMAND="$1"
-shift
+shift 
 
 # Case statement to handle different commands
 case "$COMMAND" in
