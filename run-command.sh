@@ -1,5 +1,5 @@
 #!/bin/sh
-
+ 
 # Check if at least two arguments were passed
 if [ "$#" -lt 2 ]; then
     echo "Usage: $0 {git|mvn|cx|sonar-scanner|twistcli|docker} [arguments...]"
