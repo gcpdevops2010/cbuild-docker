@@ -5,7 +5,7 @@ if [ "$#" -lt 2 ]; then
     echo "Usage: $0 {git|mvn|cx|sonar-scanner|twistcli|docker} [arguments...]"
     exit 1
 fi
-
+ 
 # Extract the command and shift the arguments to pass the rest to the respective tool
 COMMAND="$1"
 shift 
