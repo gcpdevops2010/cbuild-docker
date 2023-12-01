@@ -14,7 +14,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/re
 
 # Update the package list and install git
 RUN apk --no-cache update && \
-     apk --no-cache add git jq unzip curl openjdk17 maven python3 py3-crcmod libc6-compat openssh-client 
+     apk --no-cache add git jq unzip curl openjdk17 maven python3 py3-crcmod libc6-compat openssh-client  bash
 	 
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 ENV PATH="$JAVA_HOME/bin:${PATH}"
